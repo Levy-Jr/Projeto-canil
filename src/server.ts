@@ -10,7 +10,7 @@ dotenv.config()
 const server = express()
 
 server.set('view engine', 'mustache')
-server.set('views', path.join('__dirname', 'views'))
+server.set('views', path.join(__dirname, 'views'))
 server.engine('mustache', mustache())
 
 //essa linha de código é feita para que consigamos entregar arquivos estáticos no nosso servidor, como HTML, CSS, Javascript, imagens
@@ -19,7 +19,7 @@ server.use(express.static(path.join(__dirname, '../public')))
 server.use(mainRoutes)
 
 server.use((req, res) => {
-  res.status(404).send('página não encontrada')
+  res.status(404).render('pages/404')
 })
 
 server.listen(process.env.PORT)
